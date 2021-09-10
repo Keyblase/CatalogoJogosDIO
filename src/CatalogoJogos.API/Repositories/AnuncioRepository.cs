@@ -10,6 +10,8 @@ namespace CatalogoJogos.API.Repositories
     public class AnuncioRepository : IAnuncioRepository
     {
         static List<AnuncioEntity> fakerAnuncioEntity = new Faker<AnuncioEntity>("pt_BR")
+                .RuleFor(c => c.Id, f => f.Random.Guid())
+                .RuleFor(c => c.IdJogo, f => f.Random.Guid().ToString())
                 .RuleFor(c => c.Titulo, f => f.Name.JobTitle())
                 .RuleFor(c => c.Descricao, f => f.Lorem.Lines(3))
                 .RuleFor(c => c.QtdeComentarios, f => f.Random.Number(1,1000))
@@ -76,7 +78,7 @@ namespace CatalogoJogos.API.Repositories
 
         public Task AdicionarCurtida(Guid id)
         {
-            anuncios[id].QtdeComentarios += 1;
+            anuncios[id].QtdeCurtidas += 1;
             return Task.CompletedTask;
         }
     }
