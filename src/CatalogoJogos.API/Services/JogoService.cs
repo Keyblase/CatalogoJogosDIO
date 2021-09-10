@@ -1,7 +1,9 @@
 ﻿using CatalogoJogos.API.Entities;
 using CatalogoJogos.API.Exceptions;
+using CatalogoJogos.API.Helpers;
 using CatalogoJogos.API.InputModel;
 using CatalogoJogos.API.Repositories;
+using CatalogoJogos.API.Values;
 using CatalogoJogos.API.ViewModel;
 using System;
 using System.Collections.Generic;
@@ -32,12 +34,12 @@ namespace CatalogoJogos.API.Services
                                     DataDeLancamento = jogo.DataDeLancamento,
                                     Descricao = jogo.Descricao,
                                     Score = jogo.Score,
-                                    Status = jogo.Status,
-                                    Classificacao = jogo.Classificacao,
+                                    Status = EnumHelper<StatusValue>.GetDisplayValue(jogo.Status),
+                                    Classificacao = EnumHelper<ClassificacaoValue>.GetDisplayValue(jogo.Classificacao),
                                     Distribuidora = jogo.Distribuidora,
                                     Generos = jogo.Generos,
                                     Idiomas = jogo.Idiomas,
-                                    //falta anuncios
+                                    Anuncios = jogo.Anuncios
                                 })
                                .ToList();
         }
@@ -54,7 +56,16 @@ namespace CatalogoJogos.API.Services
                 Id = jogo.Id,
                 Nome = jogo.Nome,
                 Produtora = jogo.Produtora,
-                Preco = jogo.Preco
+                Preco = jogo.Preco,
+                DataDeLancamento = jogo.DataDeLancamento,
+                Descricao = jogo.Descricao,
+                Score = jogo.Score,
+                Status = EnumHelper<StatusValue>.GetDisplayValue(jogo.Status),
+                Classificacao = EnumHelper<ClassificacaoValue>.GetDisplayValue(jogo.Classificacao),
+                Distribuidora = jogo.Distribuidora,
+                Generos = jogo.Generos,
+                Idiomas = jogo.Idiomas,
+                Anuncios = jogo.Anuncios
             };
         }
 
@@ -110,6 +121,19 @@ namespace CatalogoJogos.API.Services
             await _jogoRepository.Atualizar(entidadeJogo);
         }
 
+        public async Task Atualizar(Guid id, string descricao)
+        {
+            var entidadeJogo = await _jogoRepository.Obter(id);
+
+            if (entidadeJogo == null)
+                throw new JogoNaoCadastradoException();
+
+            entidadeJogo.Descricao = descricao;
+
+            await _jogoRepository.Atualizar(entidadeJogo);
+        }
+
+
         public async Task Remover(Guid id)
         {
             var jogo = await _jogoRepository.Obter(id);
@@ -124,5 +148,6 @@ namespace CatalogoJogos.API.Services
         {
             _jogoRepository?.Dispose();
         }
+
     }
 }

@@ -49,7 +49,7 @@ namespace CatalogoJogos.API.Controllers.V2
         /// <param name="idJogo">Id do jogo buscado</param>
         /// <response code="200">Retorna o jogo filtrado</response>
         /// <response code="204">Caso não haja jogo com este id</response>   
-        [HttpGet("{idJogo:guid}")]
+        [HttpGet("{idJogo:Guid}")]
         public async Task<ActionResult<JogoViewModel>> Obter([FromRoute] Guid idJogo)
         {
             var jogo = await _jogoService.Obter(idJogo);
@@ -88,7 +88,7 @@ namespace CatalogoJogos.API.Controllers.V2
         /// <param name="jogoInputModel">Novos dados para atualizar o jogo indicado</param>
         /// <response code="200">Cao o jogo seja atualizado com sucesso</response>
         /// <response code="404">Caso não exista um jogo com este Id</response>   
-        [HttpPut("{idJogo:guid}")]
+        [HttpPut("{idJogo:Guid}")]
         public async Task<ActionResult> AtualizarJogo([FromRoute] Guid idJogo, [FromBody] JogoModel jogoInputModel)
         {
             try
@@ -108,9 +108,9 @@ namespace CatalogoJogos.API.Controllers.V2
         /// </summary>
         /// /// <param name="idJogo">Id do jogo a ser atualizado</param>
         /// <param name="preco">Novo preço do jogo</param>
-        /// <response code="200">Cao o preço seja atualizado com sucesso</response>
+        /// <response code="200">Caso o preço seja atualizado com sucesso</response>
         /// <response code="404">Caso não exista um jogo com este Id</response>   
-        [HttpPatch("{idJogo:guid}/preco/{preco:double}")]
+        [HttpPatch("{idJogo:Guid}/preco/{preco:double}")]
         public async Task<ActionResult> AtualizarJogo([FromRoute] Guid idJogo, [FromRoute] double preco)
         {
             try
@@ -126,12 +126,34 @@ namespace CatalogoJogos.API.Controllers.V2
         }
 
         /// <summary>
+        /// Atualizar a descrição de um jogo
+        /// </summary>
+        /// /// <param name="idJogo">Id do jogo a ser atualizado</param>
+        /// <param name="descricao">Nova descrição do jogo</param>
+        /// <response code="200">Caso a descrição seja atualizada com sucesso</response>
+        /// <response code="404">Caso não exista um jogo com este Id</response>   
+        [HttpPatch("{idJogo:Guid}/descricao/{descricao}")]
+        public async Task<ActionResult> AtualizarJogo([FromRoute] Guid idJogo, [FromRoute] string descricao)
+        {
+            try
+            {
+                await _jogoService.Atualizar(idJogo, descricao);
+
+                return Ok();
+            }
+            catch (JogoNaoCadastradoException ex)
+            {
+                return NotFound("Não existe este jogo");
+            }
+        }
+
+        /// <summary>
         /// Excluir um jogo
         /// </summary>
         /// /// <param name="idJogo">Id do jogo a ser excluído</param>
-        /// <response code="200">Cao o preço seja atualizado com sucesso</response>
+        /// <response code="200">Caso a exclusao seja feita com sucesso</response>
         /// <response code="404">Caso não exista um jogo com este Id</response>   
-        [HttpDelete("{idJogo:guid}")]
+        [HttpDelete("{idJogo:Guid}")]
         public async Task<ActionResult> ApagarJogo([FromRoute] Guid idJogo)
         {
             try

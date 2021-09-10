@@ -7,8 +7,9 @@ namespace CatalogoJogos.API.Entities
 {
     public class AnuncioEntity
     {
-        public string IdJogo { get; set; }
+        public Guid Id { get; set; }
 
+        public string IdJogo { get; set; }
         public string Titulo { get; set; }
         public DateTime DataDeCriacao { get; set; }
         public string Descricao { get; set; }

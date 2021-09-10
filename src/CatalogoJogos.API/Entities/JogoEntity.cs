@@ -14,8 +14,11 @@ namespace CatalogoJogos.API.Entities
         //Adição
         public string Distribuidora { get; set; }
         public DateTime DataDeLancamento { get; set; }
-        public string Descricao { get; set; }
         public string Score { get; set; }
+
+        //Podera ser Editado
+        public string Descricao { get; set; }
+
 
         //enumeradores
         public StatusValue Status { get; set; }

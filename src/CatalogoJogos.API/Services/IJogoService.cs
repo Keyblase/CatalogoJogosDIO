@@ -13,6 +13,7 @@ namespace CatalogoJogos.API.Services
         Task<JogoViewModel> Inserir(JogoModel jogo);
         Task Atualizar(Guid id, JogoModel jogo);
         Task Atualizar(Guid id, double preco);
+        Task Atualizar(Guid id, string descricao);
         Task Remover(Guid id);
     }
 }

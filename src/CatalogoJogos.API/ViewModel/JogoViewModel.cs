@@ -20,8 +20,8 @@ namespace CatalogoJogos.API.ViewModel
         public string Score { get; set; }
 
         //enumeradores
-        public StatusValue Status { get; set; }
-        public ClassificacaoValue Classificacao { get; set; }
+        public string Status { get; set; }
+        public string Classificacao { get; set; }
 
         //Entidades
         public ICollection<AnuncioEntity> Anuncios { get; set; }

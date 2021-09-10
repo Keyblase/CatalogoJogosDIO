@@ -37,7 +37,7 @@ namespace CatalogoJogos.API.InputModel
 
         //enumeradores
         public IEnumerable<SelectListItem> StatusValue { get; set; }
-        public IEnumerable<SelectListItem> Classificacao { get; set; }
+        public IEnumerable<SelectListItem> ClassificacaoValue { get; set; }
 
         //Lista itens
         public IEnumerable<string> Idiomas { get; set; }

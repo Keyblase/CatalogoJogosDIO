@@ -58,6 +58,18 @@
             <response code="200">Cao o preço seja atualizado com sucesso</response>
             <response code="404">Caso não exista um jogo com este Id</response>   
         </member>
+        <member name="M:CatalogoJogos.API.Controllers.V2.AnunciosController.Obter(System.Int32,System.Int32)">
+            <summary>
+            Buscar todos os anuncios de forma paginada
+            </summary>
+            <remarks>
+            Não é possível retornar os anuncios sem paginação
+            </remarks>
+            <param name="pagina">Indica qual página está sendo consultada. Mínimo 1</param>
+            <param name="quantidade">Indica a quantidade de reistros por página. Mínimo 1 e máximo 50</param>
+            <response code="200">Retorna a lista de jogos</response>
+            <response code="204">Caso não haja jogos</response>   
+        </member>
         <member name="M:CatalogoJogos.API.Controllers.V2.JogosController.Obter(System.Int32,System.Int32)">
             <summary>
             Buscar todos os jogos de forma paginada
@@ -101,7 +113,16 @@
             </summary>
             /// <param name="idJogo">Id do jogo a ser atualizado</param>
             <param name="preco">Novo preço do jogo</param>
-            <response code="200">Cao o preço seja atualizado com sucesso</response>
+            <response code="200">Caso o preço seja atualizado com sucesso</response>
+            <response code="404">Caso não exista um jogo com este Id</response>   
+        </member>
+        <member name="M:CatalogoJogos.API.Controllers.V2.JogosController.AtualizarJogo(System.Guid,System.String)">
+            <summary>
+            Atualizar a descrição de um jogo
+            </summary>
+            /// <param name="idJogo">Id do jogo a ser atualizado</param>
+            <param name="descricao">Nova descrição do jogo</param>
+            <response code="200">Caso a descrição seja atualizada com sucesso</response>
             <response code="404">Caso não exista um jogo com este Id</response>   
         </member>
         <member name="M:CatalogoJogos.API.Controllers.V2.JogosController.ApagarJogo(System.Guid)">
@@ -109,7 +130,7 @@
             Excluir um jogo
             </summary>
             /// <param name="idJogo">Id do jogo a ser excluído</param>
-            <response code="200">Cao o preço seja atualizado com sucesso</response>
+            <response code="200">Caso a exclusao seja feita com sucesso</response>
             <response code="404">Caso não exista um jogo com este Id</response>   
         </member>
     </members>

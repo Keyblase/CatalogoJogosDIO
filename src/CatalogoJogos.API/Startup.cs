@@ -26,12 +26,15 @@ namespace CatalogoJogos.API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddScoped<IJogoService, JogoService>();
+            services.AddScoped<IAnuncioService, AnuncioService>();
+
             services.AddScoped<IJogoRepository, JogoRepository>();
+            services.AddScoped<IAnuncioRepository, AnuncioRepository>();
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "CatalogoJogos", Version = "v1" });
+                c.SwaggerDoc("v2", new OpenApiInfo { Title = "CatalogoJogos", Version = "v2" });
 
                 var basePath = AppDomain.CurrentDomain.BaseDirectory;
                 var fileName = typeof(Startup).GetTypeInfo().Assembly.GetName().Name + ".xml";
@@ -46,7 +49,7 @@ namespace CatalogoJogos.API
             {
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "ExemploApiCatalogoJogos v1"));
+                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v2/swagger.json", "ExemploApiCatalogoJogos v2"));
             }
 
             app.UseMiddleware<ExceptionMiddleware>();

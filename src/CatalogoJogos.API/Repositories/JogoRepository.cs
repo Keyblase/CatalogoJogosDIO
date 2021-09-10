@@ -1,6 +1,7 @@
 ﻿using Bogus;
 using CatalogoJogos.API.Entities;
 using CatalogoJogos.API.Values;
+using CatalogoJogos.API.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,7 +26,7 @@ namespace CatalogoJogos.API.Repositories
                 .RuleFor(c => c.Produtora, f => f.Name.JobArea())
                 .RuleFor(c => c.DataDeLancamento, f => f.Date.Past())
                 .RuleFor(c => c.Descricao, f => f.Lorem.Lines(3))
-                .RuleFor(c => c.Score, f => f.Random.Double(1, 100).ToString())
+                .RuleFor(c => c.Score, f => f.Random.Int(1, 100).ToString())
                 .RuleFor(c => c.Status, f => f.PickRandom<StatusValue>())
                 .RuleFor(c => c.Classificacao, f => f.PickRandom<ClassificacaoValue>())
                 .RuleFor(c => c.Preco, f => f.Random.Double(1, 1000))
