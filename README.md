@@ -9,4 +9,4 @@ ASP.NET Web APIs - Framework -  net 5.0
 Bogus - Criação de objetos fakes para mockup
 
 # Documentação da API
-![](https://imgur.com/NnT2PY9)
+![](https://i.imgur.com/NnT2PY9.jpg)
