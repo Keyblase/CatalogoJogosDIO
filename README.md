@@ -10,5 +10,5 @@ Bogus - Criação de objetos fakes para mockup.
 Nsubistitute - Biblioteca para Mock Testes.
 
 # Documentação da API
-Segue abaixo como ficou parte da Documentação da API Catalogos.
+Segue abaixo como ficou parte da Documentação da API Catalogos. Obs: Grande parte das adições foi como inspiração o catalogo de jogos Da Steam , por conter informações relevantes e diferentes, utilizei mais campos para fazer essa API.
 ![](https://i.imgur.com/NnT2PY9.jpg)
